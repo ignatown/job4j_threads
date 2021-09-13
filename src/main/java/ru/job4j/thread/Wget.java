@@ -29,7 +29,7 @@ public class Wget implements Runnable {
                     Thread.sleep(speed - dTime);
                 }
             }
-        } catch (IOException | InterruptedException e){
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
