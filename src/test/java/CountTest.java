@@ -1,6 +1,6 @@
-package ru.job4j;
-
 import org.junit.Test;
+import ru.job4j.Count;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
