@@ -12,14 +12,14 @@ public class Getter {
 
     public String get(Predicate<Integer> filter) throws IOException {
         try (InputStream i = new FileInputStream(file)) {
-            String output = "";
+            StringBuilder stringBuilder = new StringBuilder();
             int data;
             while ((data = i.read()) > 0) {
                 if (filter.test(data)) {
-                    output += (char) data;
+                    stringBuilder.append(data);
                 }
             }
-            return output;
+            return stringBuilder.toString();
         }
     }
 
