@@ -9,22 +9,18 @@ import java.util.Map;
 @ThreadSafe
 public class UserStorage {
     @GuardedBy("this")
-    Map<Integer, Integer> userMap = new HashMap<Integer, Integer>();
+    private final Map<Integer, Integer> userMap = new HashMap<Integer, Integer>();
 
     private synchronized boolean add(User user) {
-        if (!userMap.containsKey(user.getId())) {
-            userMap.put(user.getId(), user.getAmount());
-            return true;
-        }
-        return false;
+        return userMap.putIfAbsent(user.getId(), user.getAmount()) == null;
     }
 
     private synchronized boolean update(User user) {
-        if (userMap.containsKey(user.getId())) {
-            userMap.put(user.getId(), user.getAmount());
-            return true;
-        }
-        return false;
+        return userMap.replace(userMap.get(user.getId()), userMap.get(user.getAmount()), user.getAmount());
+    }
+
+    public synchronized boolean delete(User user) {
+        return userMap.remove(user.getId()) != null;
     }
 
     private synchronized boolean transfer(int fromId, int toId, int amount) {
