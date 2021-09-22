@@ -28,4 +28,11 @@ public class SimpleBlockingQueue<T> {
             notify();
             return queue.poll();
     }
+
+    public boolean isEmpty() {
+        if (queue.size() == 0) {
+            return true;
+        }
+        return false;
+    }
 }
