@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class SimpleBlockingQueueTest {
     @Test
     public void whenProducerConsumer() throws InterruptedException {
-        SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<>();
+        SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<>(3);
         List<Integer> result = new ArrayList<>();
         Thread thread1 = new Thread(new Runnable() {
             @Override
@@ -49,7 +49,7 @@ public class SimpleBlockingQueueTest {
     @Test
     public void whenFetchAllThenGetIt() throws InterruptedException {
         final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
-        final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>();
+        final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(3);
         Thread producer = new Thread(
                 () -> {
                     for (int i = 0; i < 5; i++) {
