@@ -1,9 +1,8 @@
 package ru.job4j.pool;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 public class SearchIndexTest {
 
@@ -18,14 +17,14 @@ public class SearchIndexTest {
     @Test
     public void searchLengthIs6() {
         SearchIndex<Integer> ps = new SearchIndex<>();
-        int r = SearchIndex.search(array(6), 5);
+        int r = ps.search(array(6), 5);
         assertThat(r, is(5));
     }
 
     @Test
     public void searchLengthIs15() {
         SearchIndex<Integer> ps = new SearchIndex<>();
-        int r = SearchIndex.search(array(15), 11);
+        int r = ps.search(array(15), 11);
         assertThat(r, is(11));
     }
 
