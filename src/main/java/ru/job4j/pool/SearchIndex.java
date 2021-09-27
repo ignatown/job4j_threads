@@ -16,6 +16,13 @@ public class SearchIndex<T> extends RecursiveTask<Integer> {
         this.end = end;
     }
 
+    public SearchIndex() {
+        this.array = null;
+        this.target = null;
+        this.start = 0;
+        this.end = 0;
+    }
+
     @Override
     protected Integer compute() {
         if (this.start - this.end < 10) {
@@ -28,7 +35,7 @@ public class SearchIndex<T> extends RecursiveTask<Integer> {
         rightSide.fork();
         int leftIndex = leftSide.join();
         int rightIndex = rightSide.join();
-        return leftIndex > rightIndex ? leftIndex : rightIndex;
+        return Math.max(leftIndex, rightIndex);
     }
 
     public static <T> int search(T[] array, T item) {
