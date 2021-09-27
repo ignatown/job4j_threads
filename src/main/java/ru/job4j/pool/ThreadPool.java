@@ -38,4 +38,15 @@ public class ThreadPool {
             threads.add(newThread);
         }
     }
+
+    public static void main(String[] args) throws InterruptedException {
+        ThreadPool threadPool = new ThreadPool();
+        for (int i = 0; i < 100; i++) {
+            threadPool.work(() -> {
+                System.out.println("START " + Thread.currentThread().getName());
+                System.out.println("END " + Thread.currentThread().getName());
+            });
+        }
+        threadPool.shutdown();
+    }
 }
